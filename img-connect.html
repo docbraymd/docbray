@@ -851,8 +851,9 @@
 // Browsers block fetch() when the HTML is opened directly via file:// — host the page (or
 // run a local static server) to test against ./img-connect.json.
 
-// Switch to "./img-connect.json" for local testing alongside this HTML.
-const DATA_URL = "https://raw.githubusercontent.com/docbraymd/docbray/refs/heads/main/img-connect.json";
+// Served from the same origin as this HTML (img.docbray.com via GitHub Pages).
+// Swap to an absolute URL only if you need to host the JSON on a different host.
+const DATA_URL = "./img-connect.json";
 
 let opportunities = [];
 let grants = [];
