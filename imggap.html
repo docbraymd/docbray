@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IMG Connect — Gap-Year Opportunities for International Medical Graduates</title>
+<meta name="description" content="A curated, navigable guide to U.S. clinical experience, research, training, and degree pathways for International Medical Graduates (IMGs) during their pre-residency gap years." />
+<style>
+  :root {
+    --ink: #0f1b2d;
+    --ink-2: #334155;
+    --ink-3: #64748b;
+    --line: #e2e8f0;
+    --line-2: #cbd5e1;
+    --bg: #f7f9fc;
+    --bg-card: #ffffff;
+    --navy: #0b3559;
+    --navy-2: #14529a;
+    --teal: #0d8a8a;
+    --teal-2: #0fa3a3;
+    --teal-soft: #e6f5f5;
+    --amber: #b45309;
+    --amber-bg: #fef3c7;
+    --amber-border: #f59e0b;
+    --red: #b91c1c;
+    --red-bg: #fee2e2;
+    --red-border: #ef4444;
+    --green: #166534;
+    --green-bg: #dcfce7;
+    --green-border: #22c55e;
+    --slate-bg: #f1f5f9;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 2px rgba(15,27,45,.04), 0 2px 8px rgba(15,27,45,.04);
+    --shadow-strong: 0 2px 6px rgba(15,27,45,.08), 0 6px 18px rgba(15,27,45,.06);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--navy-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { color: var(--navy); margin: 0; }
+  h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; }
+  h2 { font-size: 1.3rem; font-weight: 700; margin: 0 0 0.5rem; }
+  h3 { font-size: 1.05rem; font-weight: 600; }
+  p { margin: 0 0 0.75rem; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 1.25rem 0; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  header.site {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.25rem;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .brand .mark {
+    display: inline-block;
+    width: 0.55rem;
+    height: 1.2rem;
+    background: var(--teal);
+    border-radius: 2px;
+    transform: translateY(2px);
+  }
+  .lede {
+    color: var(--ink-2);
+    max-width: 64ch;
+    margin-top: 0.2rem;
+  }
+  .as-of {
+    color: var(--ink-3);
+    font-size: 0.82rem;
+  }
+
+  nav.tabs {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav.tabs .container {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+  nav.tabs button {
+    background: transparent;
+    border: 0;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    border-radius: 4px 4px 0 0;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  nav.tabs button:hover { color: var(--navy); background: var(--slate-bg); }
+  nav.tabs button[aria-selected="true"] {
+    color: var(--navy);
+    border-bottom-color: var(--teal);
+    font-weight: 600;
+  }
+
+  main { padding: 1.5rem 0 2.5rem; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .panel-intro {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    margin-bottom: 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .panel-intro h2 { margin-bottom: 0.35rem; }
+  .panel-intro p { color: var(--ink-2); margin: 0; }
+
+  .filters {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .filters .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-bottom: 0.55rem;
+  }
+  .filters .row:last-child { margin-bottom: 0; }
+  .filters .label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-3);
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.32rem 0.65rem;
+    background: var(--slate-bg);
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all .15s;
+  }
+  .chip:hover { border-color: var(--line-2); }
+  .chip.on {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+  .chip.region.on { background: var(--teal); border-color: var(--teal); }
+  .chip.visa.on { background: var(--navy-2); border-color: var(--navy-2); }
+  .clear-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-3);
+    padding: 0.32rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .clear-btn:hover { color: var(--navy); border-color: var(--line-2); }
+
+  .result-meta {
+    color: var(--ink-3);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 720px) {
+    .card-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1080px) {
+    .card-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .15s, transform .15s;
+  }
+  .card:hover { box-shadow: var(--shadow-strong); }
+
+  .warn-banner {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.83rem;
+    font-weight: 500;
+    line-height: 1.35;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .warn-banner::before {
+    content: "!";
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    margin-top: 1px;
+  }
+  .warn-banner.warn-red {
+    background: var(--red-bg);
+    color: var(--red);
+    border-bottom: 1px solid var(--red-border);
+  }
+  .warn-banner.warn-amber {
+    background: var(--amber-bg);
+    color: var(--amber);
+    border-bottom: 1px solid var(--amber-border);
+  }
+
+  .card-body {
+    padding: 0.9rem 1rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 0.15rem;
+    line-height: 1.3;
+  }
+  .card-inst {
+    color: var(--ink-3);
+    font-size: 0.83rem;
+    margin-bottom: 0.6rem;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    margin: 0.4rem 0 0.7rem;
+  }
+  .meta-grid dt {
+    color: var(--ink-3);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    padding-top: 1px;
+  }
+  .meta-grid dd { margin: 0; color: var(--ink); }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0.5rem 0 0.6rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.74rem;
+    border-radius: 999px;
+    font-weight: 500;
+    line-height: 1.4;
+    border: 1px solid;
+  }
+  .badge.visa {
+    background: #eef4fb;
+    color: var(--navy-2);
+    border-color: #c7dcef;
+  }
+  .badge.cost-free {
+    background: var(--green-bg);
+    color: var(--green);
+    border-color: var(--green-border);
+  }
+  .badge.cost-paid {
+    background: var(--teal-soft);
+    color: var(--teal);
+    border-color: #9fd3d3;
+  }
+  .badge.cost-fee {
+    background: #fff7e6;
+    color: var(--amber);
+    border-color: #f3d28b;
+  }
+  .badge.hands-on {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #c4b5fd;
+  }
+  .badge.specialty {
+    background: var(--slate-bg);
+    color: var(--ink-2);
+    border-color: var(--line);
+  }
+
+  .desc {
+    color: var(--ink-2);
+    font-size: 0.88rem;
+    margin: 0.2rem 0 0.6rem;
+  }
+  .reqs {
+    font-size: 0.83rem;
+    color: var(--ink-2);
+    margin: 0.3rem 0 0.6rem;
+    padding-left: 1.1rem;
+  }
+  .reqs li { margin-bottom: 0.15rem; }
+
+  .card-foot {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--line);
+    font-size: 0.83rem;
+    color: var(--ink-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    align-items: center;
+  }
+  .card-foot .ctc { color: var(--ink-2); }
+  .card-foot a { font-weight: 500; }
+
+  .notes {
+    background: var(--slate-bg);
+    border-left: 3px solid var(--teal);
+    padding: 0.45rem 0.7rem;
+    margin: 0.4rem 0 0.6rem;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--ink-3);
+    background: var(--bg-card);
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+  }
+
+  .section-heading {
+    margin: 1.8rem 0 0.7rem;
+    color: var(--navy);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-heading::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  /* Visa Guide */
+  .visa-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 720px) {
+    .visa-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .visa-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .visa-card h3 {
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .visa-tag {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background: var(--teal-soft);
+    color: var(--teal);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 0.6rem 0 1rem;
+    font-size: 0.88rem;
+  }
+  table.matrix th, table.matrix td {
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.matrix th {
+    background: var(--slate-bg);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+  table.matrix tr:last-child td { border-bottom: 0; }
+  table.matrix td:last-child, table.matrix th:last-child { border-right: 0; }
+  table.matrix td.yes { color: var(--green); font-weight: 600; }
+  table.matrix td.no { color: var(--red); }
+  table.matrix td.maybe { color: var(--amber); }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    color: #78350f;
+  }
+  .callout h3 { color: #78350f; margin-bottom: 0.3rem; }
+  .callout.info {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1e3a8a;
+  }
+  .callout.info h3 { color: #1e3a8a; }
+
+  /* Resources */
+  .res-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  @media (min-width: 720px) {
+    .res-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .res-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    box-shadow: var(--shadow);
+  }
+  .res-card h4 {
+    margin: 0 0 0.2rem;
+    color: var(--navy);
+    font-size: 0.98rem;
+  }
+  .res-card p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.86rem;
+  }
+  .res-card .url {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.82rem;
+    color: var(--navy-2);
+    word-break: break-all;
+  }
+
+  footer.site {
+    border-top: 1px solid var(--line);
+    background: var(--bg-card);
+    padding: 1.5rem 0 2rem;
+    color: var(--ink-3);
+    font-size: 0.85rem;
+  }
+  footer.site h3 { color: var(--navy); margin-bottom: 0.4rem; font-size: 0.95rem; }
+  footer.site p { margin-bottom: 0.5rem; }
+  footer.site .disclaimer {
+    background: var(--slate-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    color: var(--ink-2);
+  }
+  footer.site strong { color: var(--ink); }
+
+  /* Print-friendliness */
+  @media print {
+    nav.tabs, .filters { display: none; }
+    .panel { display: block !important; page-break-after: always; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <h1>IMG Connect</h1>
+    </div>
+    <p class="lede">A curated, navigable guide to U.S. gap-year opportunities for International Medical Graduates — clinical experience, research, training, and graduate degrees — with visa context for each pathway.</p>
+    <p style="margin:0.2rem 0 0.6rem;font-size:0.9rem;color:var(--ink-2);"><strong>Unmatched this cycle?</strong> Start with the strategic 12-month plan: <a href="https://docbray.com/unmatched">docbray.com/unmatched →</a></p>
+    <p class="as-of">Last reviewed: 2026. Programs, fees, and eligibility change frequently — always verify directly with the institution.</p>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Opportunity categories">
+  <div class="container" id="tabs">
+    <button role="tab" data-tab="externships" aria-selected="false">Externships</button>
+    <button role="tab" data-tab="observerships" aria-selected="true">Observerships</button>
+    <button role="tab" data-tab="fellowships" aria-selected="false">Pre-Residency Fellowships</button>
+    <button role="tab" data-tab="paid-research" aria-selected="false">Paid Research</button>
+    <button role="tab" data-tab="volunteer-research" aria-selected="false">Volunteer Research</button>
+    <button role="tab" data-tab="training" aria-selected="false">Training &amp; Certifications</button>
+    <button role="tab" data-tab="degrees" aria-selected="false">Degrees</button>
+    <button role="tab" data-tab="visa" aria-selected="false">Visa Guide</button>
+    <button role="tab" data-tab="resources" aria-selected="false">Resources</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <div id="data-status" class="callout info" style="display:none;">
+      <h3 id="data-status-title">Loading opportunities…</h3>
+      <p id="data-status-body">Fetching the latest program list.</p>
+    </div>
+
+    <!-- =================== EXTERNSHIPS =================== -->
+    <section id="panel-externships" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Hands-on Externships</h2>
+        <p>Supervised clinical rotations with direct patient care: history-taking, physical exams, notes, and case presentations. Highly valued by program directors as the closest proxy to a U.S. sub-internship. <strong>Rare and tightly restricted</strong> — most are reserved for current medical students or for graduates meeting specific state licensure exemptions. Many require J-1 or H-1B sponsorship; B-1/B-2 does not authorize hands-on care.</p>
+      </div>
+      <div class="filters" data-filters-for="externships"></div>
+      <div class="result-meta" data-meta-for="externships"></div>
+      <div class="card-grid" data-grid-for="externships"></div>
+    </section>
+
+    <!-- =================== OBSERVERSHIPS =================== -->
+    <section id="panel-observerships" class="panel active" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Observerships (Shadowing)</h2>
+        <p>Structured shadowing of clinical teams — rounds, conferences, procedures — with <strong>no hands-on patient care</strong>, no documentation in the EMR, and typically no LOR guaranteed. The most accessible form of U.S. clinical experience for post-graduate IMGs and the dominant on-ramp. Most accept B-1/B-2 visitor status; programs vary widely on cost ($0 to $3,000+), duration (1–8 weeks), and eligibility windows.</p>
+      </div>
+      <div class="filters" data-filters-for="observerships"></div>
+      <div class="result-meta" data-meta-for="observerships"></div>
+      <div class="card-grid" data-grid-for="observerships"></div>
+    </section>
+
+    <!-- =================== PRE-RESIDENCY FELLOWSHIPS =================== -->
+    <section id="panel-fellowships" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Pre-Residency Clinical Fellowships</h2>
+        <p>Immersive 9–12 month programs that integrate IMGs into U.S. clinical teams with structured supervision, USMLE preparation, mentorship, and (in some cases) hands-on responsibilities under state limited-permit licensure. Higher commitment than an observership and often a direct pipeline to residency, but several have strict citizenship or in-country residence requirements. Read eligibility carefully.</p>
+      </div>
+      <div class="filters" data-filters-for="fellowships"></div>
+      <div class="result-meta" data-meta-for="fellowships"></div>
+      <div class="card-grid" data-grid-for="fellowships"></div>
+    </section>
+
+    <!-- =================== PAID RESEARCH =================== -->
+    <section id="panel-paid-research" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Paid Research Opportunities</h2>
+        <p>Structured research fellowships and clinical research coordinator (CRC) positions with stipends or salaries. Produces publications, faculty LORs, and longitudinal mentorship from Principal Investigators — often program directors or senior attendings. Most paid roles require visa sponsorship (H-1B, J-1 research scholar) and many federal/NIH programs restrict eligibility to U.S. citizens and permanent residents.</p>
+        <p style="margin-top:0.5rem;margin-bottom:0;font-size:0.88rem;"><strong>Strategy deep-dive:</strong> <a href="https://docbray.com/usce" target="_blank" rel="noopener noreferrer">The IMG's Strategic Bridge to Residency: Paid Research →</a> &mdash; Build / Buy / Trap framework, visa pathways, and how to run a PI-centric search.</p>
+      </div>
+      <div class="filters" data-filters-for="paid-research"></div>
+      <div class="result-meta" data-meta-for="paid-research"></div>
+      <div class="card-grid" data-grid-for="paid-research"></div>
+
+      <h3 class="section-heading">Society Grants &amp; Awards</h3>
+      <p style="color: var(--ink-2); font-size: 0.9rem; margin-bottom: 0.8rem;">Competitive grants and awards from specialty societies. Not gap-year placements themselves, but powerful credentials that can attach to your research role.</p>
+      <div class="card-grid" id="grants-grid"></div>
+    </section>
+
+    <!-- =================== VOLUNTEER RESEARCH =================== -->
+    <section id="panel-volunteer-research" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Volunteer Research Opportunities</h2>
+        <p>Unpaid research roles in academic medical centers and disease-specific institutes. Often filled by direct outreach to Principal Investigators rather than formal application portals. Most are accessible on B-1/B-2 (short-term) or J-1 research scholar status; offer publications, LORs, and a foothold into U.S. academic culture without the formal salary/sponsorship overhead of a paid role.</p>
+      </div>
+      <div class="filters" data-filters-for="volunteer-research"></div>
+      <div class="result-meta" data-meta-for="volunteer-research"></div>
+      <div class="card-grid" data-grid-for="volunteer-research"></div>
+    </section>
+
+    <!-- =================== TRAINING =================== -->
+    <section id="panel-training" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Training Courses &amp; Certifications</h2>
+        <p>Short courses, simulation workshops, and certifications that supplement your CV: clinical skills refreshers, procedural training (suturing, ultrasound, airway), CRC certifications, and widely-recognized credentials like ACLS/PALS/BLS. Useful add-ons rather than primary gap-year activities.</p>
+      </div>
+      <div class="filters" data-filters-for="training"></div>
+      <div class="result-meta" data-meta-for="training"></div>
+      <div class="card-grid" data-grid-for="training"></div>
+    </section>
+
+    <!-- =================== DEGREES =================== -->
+    <section id="panel-degrees" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Graduate Degrees &amp; Certificates</h2>
+        <p>Master's and certificate programs — most commonly MPH, MS in Clinical / Translational Research, and clinician-scientist certificates. Combines academic credentialing with an F-1 student visa pathway (with possible CPT/OPT work authorization). High tuition and 1–2 year time commitments make this most worthwhile if you have a research-heavy specialty target, want a structured visa pathway, or are leveraging the degree for a non-clinical career hedge.</p>
+        <p style="margin-top:0.5rem;margin-bottom:0;font-size:0.88rem;"><strong>Funding deep-dive:</strong> <a href="https://docbray.com/us-educational-options" target="_blank" rel="noopener noreferrer">Funding U.S. Graduate Education for IMGs →</a> &mdash; tiered scholarship sources, citizenship vs. ethnicity barriers, and graduate assistantships.</p>
+      </div>
+      <div class="filters" data-filters-for="degrees"></div>
+      <div class="result-meta" data-meta-for="degrees"></div>
+      <div class="card-grid" data-grid-for="degrees"></div>
+    </section>
+
+    <!-- =================== VISA GUIDE =================== -->
+    <section id="panel-visa" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Visa Guide</h2>
+        <p>The legality of each gap-year activity hinges on your visa status. This is a high-level orientation, not legal advice — visa rules are case-specific, change frequently, and missteps can carry serious legal consequences. Verify with the host institution's international office and a qualified immigration attorney before committing.</p>
+      </div>
+
+      <div class="visa-grid">
+        <div class="visa-card">
+          <h3>B-1 / B-2 <span class="visa-tag">VISITOR</span></h3>
+          <p>The standard visa for short-term, <strong>strictly observational</strong> shadowing experiences (no patient care, no remuneration). The U.S. Department of State explicitly permits foreign physicians on B-1 to observe and consult if unpaid. Carry your invitation/support letter and documentation of the observership purpose at the consular interview and at port of entry. Demonstrate strong ties to your home country (employment, family, property) and a specific, time-bound purpose.</p>
+          <p><strong>Do not</strong> engage in any hands-on clinical activity, even briefly. Severe consequences for unauthorized work.</p>
+        </div>
+
+        <div class="visa-card">
+          <h3>ESTA / Visa Waiver <span class="visa-tag">VISITOR (≤90 d)</span></h3>
+          <p>For passport holders of Visa Waiver Program countries. Functions similarly to B-1/B-2 for observership purposes — strictly observational, no work — but capped at 90 days per visit and cannot be extended within the U.S. Useful for short observerships where time on the ground is limited.</p>
+        </div>
+
+        <div class="visa-card">
+          <h3>F-1 <span class="visa-tag">STUDENT</span></h3>
+          <p>Required for full-time enrollment in a degree program (MPH, MS, MD, etc.) at a SEVIS-certified school. The institution issues an I-20. Allows limited on-campus employment and, in many cases, Curricular Practical Training (CPT) and post-completion Optional Practical Training (OPT) — up to 12 months, or 36 months for designated STEM fields. The OPT window can be used for research positions related to your field of study.</p>
+        </div>
+
+        <div class="visa-card">
+          <h3>J-1 <span class="visa-tag">EXCHANGE VISITOR</span></h3>
+          <p>Covers multiple sub-categories. <strong>J-1 Alien Physician</strong> (ECFMG-sponsored) is the standard residency/fellowship clinical training visa, requiring ECFMG certification and USMLE Steps. <strong>J-1 Research Scholar</strong> / <strong>Short-Term Scholar</strong> are used for research fellowships and observerships at institutions that sponsor — these can be university-issued rather than ECFMG.</p>
+          <p>Be aware of the <strong>Section 212(e) two-year home residency requirement</strong> (callout below).</p>
+        </div>
+
+        <div class="visa-card">
+          <h3>H-1B <span class="visa-tag">SPECIALTY WORKER</span></h3>
+          <p>For paid clinical positions (some pre-residency fellowships, residency at H-1B-friendly programs, faculty roles) and full-time paid research. Cap-exempt at non-profit research institutions and academic medical centers. Requires USMLE Step 3 for clinical practice. Petition and processing time are substantial, and not every program will sponsor — confirm sponsorship policy before applying.</p>
+          <p>No home-country return requirement — preferred by many IMGs who can secure it.</p>
+        </div>
+
+        <div class="visa-card">
+          <h3>O-1 / Others <span class="visa-tag">UNCOMMON</span></h3>
+          <p>O-1 (extraordinary ability) is occasionally used by IMGs with exceptional records (high-impact publications, national awards). H-4, J-2, F-2 dependent visas may carry their own work authorization rules. These edge cases warrant individualized immigration counsel.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Visa-to-Activity Matrix</h3>
+      <p style="color: var(--ink-2); font-size: 0.9rem; margin: 0 0 0.5rem;">A general orientation — institutional policy and individual circumstances can override this. "Maybe" means it depends on the sub-category, sponsor, or specific structure of the role.</p>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>B-1/B-2 &amp; ESTA</th>
+            <th>F-1 (+ CPT/OPT)</th>
+            <th>J-1 Research</th>
+            <th>J-1 Alien Physician</th>
+            <th>H-1B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Observership (no hands-on)</td>
+            <td class="yes">Yes</td>
+            <td class="maybe">Maybe</td>
+            <td class="yes">Yes</td>
+            <td class="maybe">Maybe</td>
+            <td class="maybe">Maybe</td>
+          </tr>
+          <tr>
+            <td>Externship (hands-on, unpaid)</td>
+            <td class="no">No</td>
+            <td class="maybe">Maybe (CPT)</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="maybe">Maybe</td>
+          </tr>
+          <tr>
+            <td>Pre-residency clinical fellowship</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+          </tr>
+          <tr>
+            <td>Volunteer research</td>
+            <td class="yes">Yes (short)</td>
+            <td class="maybe">Maybe</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="maybe">Maybe</td>
+          </tr>
+          <tr>
+            <td>Paid research / CRC</td>
+            <td class="no">No</td>
+            <td class="maybe">CPT/OPT only</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+          </tr>
+          <tr>
+            <td>Master's / certificate program</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+          </tr>
+          <tr>
+            <td>Training course / workshop</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="maybe">Maybe</td>
+            <td class="maybe">Maybe</td>
+            <td class="maybe">Maybe</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <h3>The Section 212(e) two-year trap</h3>
+        <p>Many J-1 holders are subject to <strong>Section 212(e)</strong> of the Immigration and Nationality Act — a requirement to return to your home country (or country of last permanent residence) for a cumulative two years before becoming eligible to change to H-1B, adjust status, or obtain permanent residency. Whether 212(e) applies depends on funding source, your country's skills list, and program category.</p>
+        <p>An IMG who completes a J-1 research fellowship and then matches into a residency program that only sponsors H-1B can be <strong>legally barred from accepting the position</strong> unless a waiver is secured (Conrad 30, Interested Government Agency, persecution, hardship, or no-objection). Waivers are complex and not guaranteed.</p>
+        <p><strong>Before accepting any J-1 role:</strong> confirm in writing whether 212(e) attaches, and plan your residency-program-target visa policies accordingly.</p>
+      </div>
+
+      <div class="callout info">
+        <h3>Practical orientation, not legal advice</h3>
+        <p>The matrix and visa cards above describe general patterns drawn from publicly available guidance (ECFMG, U.S. Department of State, AMA, institutional pages). They do not substitute for case-specific counsel. Engage a qualified immigration attorney before committing to a multi-year pathway or accepting a sponsored role.</p>
+      </div>
+    </section>
+
+    <!-- =================== RESOURCES =================== -->
+    <section id="panel-resources" class="panel" role="tabpanel">
+      <div class="panel-intro">
+        <h2>Resources &amp; Aggregators</h2>
+        <p>External tools and reference sites. These directories and databases are where you'll do most of your independent research — verify any listing here against the source.</p>
+      </div>
+
+      <h3 class="section-heading">Strategy guides (long-form)</h3>
+      <p style="color: var(--ink-2); font-size: 0.9rem; margin-bottom: 0.8rem;">Companion essays on this site. Use these when you want strategy and decision frameworks rather than a list of programs.</p>
+      <div class="res-grid" id="res-strategy-guides"></div>
+
+      <h3 class="section-heading">Opportunity directories</h3>
+      <div class="res-grid" id="res-directories"></div>
+
+      <h3 class="section-heading">Residency program research</h3>
+      <div class="res-grid" id="res-residency"></div>
+
+      <h3 class="section-heading">Official guidance &amp; sponsorship</h3>
+      <div class="res-grid" id="res-official"></div>
+
+      <h3 class="section-heading">Networking &amp; finding mentors</h3>
+      <div class="res-grid" id="res-networking"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="disclaimer">
+      <h3>Disclaimer</h3>
+      <p><strong>Not legal, immigration, or career advice.</strong> Listings reflect publicly reported program details, which change frequently — verify every cost, deadline, eligibility criterion, and visa-compatibility detail directly with the host institution before applying or paying any fee.</p>
+      <p><strong>Beware paid third-party "guaranteed observership" agencies.</strong> Major IMG advisory bodies repeatedly warn against intermediaries that cannot demonstrate a direct link to an ACGME-accredited institution or named supervising faculty. Direct, faculty-sponsored programs and hospital-run observership offices are the safer paths.</p>
+      <p><strong>Visa law is case-specific.</strong> The Visa Guide on this site is an orientation, not legal counsel. Engage a qualified immigration attorney experienced with physicians before accepting any sponsored role or making decisions tied to Section 212(e).</p>
+      <p style="margin-bottom: 0;">Reviewed 2026. Curated for general IMG audience use. Submit corrections or new programs to the site maintainer.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// =============================================================================
+// DATA SOURCE
+// =============================================================================
+//
+// Opportunities, grants, and resources are loaded from an external JSON file at startup.
+// Default: ./imggap.json next to this HTML. Override by editing DATA_URL below OR by passing
+// ?data=URL in the page URL (e.g. index.html?data=https://example.com/imggap.json).
+//
+// Hosting the JSON on GitHub:
+//   - GitHub Pages: https://YOUR_USERNAME.github.io/REPO/imggap.json
+//   - Raw GitHub:   https://raw.githubusercontent.com/YOUR_USERNAME/REPO/main/imggap.json
+//   - jsDelivr CDN: https://cdn.jsdelivr.net/gh/YOUR_USERNAME/REPO@main/imggap.json
+// Browsers block fetch() when the HTML is opened directly via file:// — host the page (or
+// run a local static server) to test against ./imggap.json.
+
+// Switch to "./imggap.json" for local testing alongside this HTML.
+const DATA_URL = "https://raw.githubusercontent.com/docbraymd/docbray/refs/heads/main/imggap.json";
+
+let opportunities = [];
+let grants = [];
+let resources = { strategyGuides: [], directories: [], residency: [], official: [], networking: [] };
+let dataMeta = {};
+
+const REGION = {
+  Northeast: ["CT","ME","MA","NH","NJ","NY","PA","RI","VT"],
+  Midwest:   ["IL","IN","IA","KS","MI","MN","MO","NE","ND","OH","SD","WI"],
+  South:     ["AL","AR","DE","FL","GA","KY","LA","MD","MS","NC","OK","SC","TN","TX","VA","WV","DC"],
+  West:      ["AK","AZ","CA","CO","HI","ID","MT","NV","NM","OR","UT","WA","WY"]
+};
+
+function regionFor(state) {
+  for (const r in REGION) if (REGION[r].includes(state)) return r;
+  return "Other";
+}
+
+
+// =============================================================================
+// US STATE / REGION / FILTER STATE
+// =============================================================================
+
+// Tabs that use the opportunity list (not visa/resources)
+const OPPORTUNITY_TABS = ["externships","observerships","fellowships","paid-research","volunteer-research","training","degrees"];
+
+// State chip lists are computed per-tab from the data (only states present)
+function statesForTab(tab) {
+  const states = new Set();
+  opportunities.filter(o => o.type === tab).forEach(o => states.add(o.state));
+  return Array.from(states).sort();
+}
+
+const FILTER_STATE = {}; // tab -> { states: Set<string>, regions: Set<string>, visa: Set<string>, freeOnly: bool, openToNonCitizens: bool, handsOnOnly: bool }
+OPPORTUNITY_TABS.forEach(tab => {
+  FILTER_STATE[tab] = {
+    states: new Set(),
+    regions: new Set(),
+    visa: new Set(),
+    freeOnly: false,
+    openToNonCitizens: false,
+    handsOnOnly: false
+  };
+});
+
+// =============================================================================
+// RENDERING
+// =============================================================================
+
+function escapeHtml(s) {
+  if (s === undefined || s === null) return "";
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function badge(label, klass) {
+  return `<span class="badge ${klass}">${escapeHtml(label)}</span>`;
+}
+
+function renderCard(o) {
+  const warnings = [];
+  if (o.excludesResidencyApplicants) {
+    warnings.push({ kind: "red", text: "Excludes IMGs intending to apply for U.S. residency / fellowship — confirm in writing before applying." });
+  }
+  if (o.citizenshipRestriction && o.citizenshipRestriction !== "none") {
+    warnings.push({ kind: "red", text: o.citizenshipRestriction });
+  }
+  (o.warnings || []).forEach(w => {
+    // Skip duplicates already added above
+    const lower = w.toLowerCase();
+    if (lower.includes("excludes applicants") && o.excludesResidencyApplicants) return;
+    if (o.citizenshipRestriction && lower.includes(o.citizenshipRestriction.toLowerCase().slice(0,20))) return;
+    warnings.push({ kind: "amber", text: w });
+  });
+  if (o.lors === false && !warnings.some(w => w.text.toLowerCase().includes("lor"))) {
+    // Only surface no-LOR warning if it's a clinical-track tab where LORs are the point
+    if (o.type === "observerships" || o.type === "externships" || o.type === "fellowships") {
+      // skip default; not every observership being LOR-less is a "warning"
+    }
+  }
+
+  const badges = [];
+  if (o.costClass === "free") badges.push(badge("Free", "cost-free"));
+  else if (o.costClass === "paid") badges.push(badge("Paid", "cost-paid"));
+  else if (o.costClass === "fee") badges.push(badge("Fee", "cost-fee"));
+  if (o.handsOn) badges.push(badge("Hands-on", "hands-on"));
+  if (o.specialty) badges.push(badge(o.specialty, "specialty"));
+  (o.visa || []).forEach(v => badges.push(badge(v, "visa")));
+
+  const meta = [];
+  if (o.city || o.state) meta.push(["Location", `${escapeHtml(o.city || "")}${o.city && o.state ? ", " : ""}${escapeHtml(o.state || "")}`]);
+  if (o.duration) meta.push(["Duration", escapeHtml(o.duration)]);
+  if (o.cost) meta.push(["Cost", escapeHtml(o.cost)]);
+  if (o.applicationWindow) meta.push(["Apply", escapeHtml(o.applicationWindow)]);
+  if (o.ecfmg) meta.push(["ECFMG", "Required"]);
+
+  const reqs = (o.requirements && o.requirements.length)
+    ? `<div><div style="font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3);font-weight:600;margin:.3rem 0 .15rem;">Eligibility</div><ul class="reqs">${o.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul></div>`
+    : "";
+
+  const contact = [];
+  if (o.contactEmail) contact.push(`<a href="mailto:${escapeHtml(o.contactEmail)}">${escapeHtml(o.contactEmail)}</a>`);
+  if (o.contactPhone) contact.push(`<span class="ctc">${escapeHtml(o.contactPhone)}</span>`);
+  if (o.link) contact.push(`<a href="${escapeHtml(o.link)}" target="_blank" rel="noopener noreferrer">Program page →</a>`);
+  const footHtml = contact.length ? `<div class="card-foot">${contact.join("")}</div>` : "";
+
+  return `
+    <article class="card" data-state="${escapeHtml(o.state)}" data-region="${escapeHtml(regionFor(o.state))}">
+      ${warnings.map(w => `<div class="warn-banner warn-${w.kind}">${escapeHtml(w.text)}</div>`).join("")}
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(o.name)}</h3>
+        <div class="card-inst">${escapeHtml(o.institution)}</div>
+        <div class="badges">${badges.join("")}</div>
+        <dl class="meta-grid">
+          ${meta.map(([k,v]) => `<dt>${escapeHtml(k)}</dt><dd>${v}</dd>`).join("")}
+        </dl>
+        ${o.description ? `<p class="desc">${escapeHtml(o.description)}</p>` : ""}
+        ${reqs}
+        ${o.notes ? `<div class="notes">${escapeHtml(o.notes)}</div>` : ""}
+        ${footHtml}
+      </div>
+    </article>
+  `;
+}
+
+function renderGrant(g) {
+  return `
+    <article class="card">
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(g.name)}</h3>
+        <div class="card-inst">${escapeHtml(g.sponsor)}</div>
+        <div class="badges">
+          ${g.amount ? badge(g.amount, "cost-paid") : ""}
+          ${g.specialty ? badge(g.specialty, "specialty") : ""}
+        </div>
+        ${g.eligibility ? `<p class="desc"><strong>Eligibility:</strong> ${escapeHtml(g.eligibility)}</p>` : ""}
+        ${g.notes ? `<div class="notes">${escapeHtml(g.notes)}</div>` : ""}
+        ${g.link ? `<div class="card-foot"><a href="${escapeHtml(g.link)}" target="_blank" rel="noopener noreferrer">Sponsor page →</a></div>` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function renderResource(r) {
+  return `
+    <div class="res-card">
+      <h4>${escapeHtml(r.name)}</h4>
+      <p>${escapeHtml(r.desc)}</p>
+      ${r.url ? `<a class="url" href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.url)}</a>` : ""}
+    </div>
+  `;
+}
+
+// =============================================================================
+// FILTER UI + APPLICATION
+// =============================================================================
+
+function buildFiltersUI(tab) {
+  const container = document.querySelector(`[data-filters-for="${tab}"]`);
+  if (!container) return;
+
+  const states = statesForTab(tab);
+  const regions = Array.from(new Set(states.map(regionFor))).sort();
+  const visasInTab = new Set();
+  opportunities.filter(o => o.type === tab).forEach(o => (o.visa || []).forEach(v => visasInTab.add(v)));
+  // Normalize visa labels to coarse buckets for filtering
+  const visaBuckets = ["B-1/B-2","ESTA","F-1","J-1","H-1B"];
+  const showVisas = visaBuckets.filter(b => Array.from(visasInTab).some(v => v.includes(b.split("/")[0])));
+
+  container.innerHTML = `
+    ${regions.length ? `
+      <div class="row" data-row="regions">
+        <span class="label">Region</span>
+        ${regions.map(r => `<button class="chip region" data-region="${escapeHtml(r)}">${escapeHtml(r)}</button>`).join("")}
+      </div>
+    ` : ""}
+    ${states.length ? `
+      <div class="row" data-row="states">
+        <span class="label">State</span>
+        ${states.map(s => `<button class="chip state" data-state="${escapeHtml(s)}">${escapeHtml(s)}</button>`).join("")}
+      </div>
+    ` : ""}
+    ${showVisas.length ? `
+      <div class="row" data-row="visas">
+        <span class="label">Visa</span>
+        ${showVisas.map(v => `<button class="chip visa" data-visa="${escapeHtml(v)}">${escapeHtml(v)}</button>`).join("")}
+      </div>
+    ` : ""}
+    <div class="row" data-row="toggles">
+      <span class="label">Quick</span>
+      <button class="chip toggle" data-toggle="freeOnly">Free / no fee</button>
+      <button class="chip toggle" data-toggle="openToNonCitizens">Open to non-citizens</button>
+      ${["externships","fellowships","training"].includes(tab) ? `<button class="chip toggle" data-toggle="handsOnOnly">Hands-on only</button>` : ""}
+      <button class="clear-btn" data-clear="${escapeHtml(tab)}">Clear filters</button>
+    </div>
+  `;
+
+  // Bind chip clicks
+  container.querySelectorAll(".chip.state").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const s = btn.dataset.state;
+      const set = FILTER_STATE[tab].states;
+      if (set.has(s)) set.delete(s); else set.add(s);
+      btn.classList.toggle("on");
+      applyFilters(tab);
+      syncHash();
+    });
+  });
+  container.querySelectorAll(".chip.region").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const r = btn.dataset.region;
+      const set = FILTER_STATE[tab].regions;
+      if (set.has(r)) set.delete(r); else set.add(r);
+      btn.classList.toggle("on");
+      applyFilters(tab);
+      syncHash();
+    });
+  });
+  container.querySelectorAll(".chip.visa").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const v = btn.dataset.visa;
+      const set = FILTER_STATE[tab].visa;
+      if (set.has(v)) set.delete(v); else set.add(v);
+      btn.classList.toggle("on");
+      applyFilters(tab);
+      syncHash();
+    });
+  });
+  container.querySelectorAll(".chip.toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.toggle;
+      FILTER_STATE[tab][key] = !FILTER_STATE[tab][key];
+      btn.classList.toggle("on");
+      applyFilters(tab);
+      syncHash();
+    });
+  });
+  container.querySelector(`[data-clear="${tab}"]`).addEventListener("click", () => {
+    FILTER_STATE[tab] = { states: new Set(), regions: new Set(), visa: new Set(), freeOnly: false, openToNonCitizens: false, handsOnOnly: false };
+    container.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+    applyFilters(tab);
+    syncHash();
+  });
+}
+
+function applyFilters(tab) {
+  const grid = document.querySelector(`[data-grid-for="${tab}"]`);
+  const meta = document.querySelector(`[data-meta-for="${tab}"]`);
+  if (!grid) return;
+  const f = FILTER_STATE[tab];
+  let list = opportunities.filter(o => o.type === tab);
+
+  if (f.regions.size > 0) {
+    list = list.filter(o => f.regions.has(regionFor(o.state)));
+  }
+  if (f.states.size > 0) {
+    list = list.filter(o => f.states.has(o.state));
+  }
+  if (f.visa.size > 0) {
+    list = list.filter(o => (o.visa || []).some(v => {
+      for (const wanted of f.visa) {
+        if (v.includes(wanted.split("/")[0])) return true;
+      }
+      return false;
+    }));
+  }
+  if (f.freeOnly) {
+    list = list.filter(o => o.costClass === "free" || o.costClass === "paid");
+  }
+  if (f.openToNonCitizens) {
+    list = list.filter(o => !o.citizenshipRestriction || o.citizenshipRestriction === "none");
+  }
+  if (f.handsOnOnly) {
+    list = list.filter(o => o.handsOn);
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty">No matching opportunities with current filters. <br><small>Try clearing one or more filters above.</small></div>`;
+  } else {
+    grid.innerHTML = list.map(renderCard).join("");
+  }
+  if (meta) {
+    const total = opportunities.filter(o => o.type === tab).length;
+    meta.textContent = `Showing ${list.length} of ${total} listed opportunities.`;
+  }
+}
+
+// =============================================================================
+// TABS
+// =============================================================================
+
+function showTab(name) {
+  document.querySelectorAll("nav.tabs button[role='tab']").forEach(b => {
+    b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false");
+  });
+  document.querySelectorAll(".panel").forEach(p => {
+    p.classList.toggle("active", p.id === `panel-${name}`);
+  });
+  // Scroll the active tab into view in the horizontal nav
+  const activeBtn = document.querySelector(`nav.tabs button[data-tab="${name}"]`);
+  if (activeBtn) activeBtn.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function bindTabs() {
+  document.querySelectorAll("nav.tabs button[role='tab']").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = btn.dataset.tab;
+      showTab(t);
+      syncHash();
+    });
+  });
+}
+
+// =============================================================================
+// URL HASH SYNC
+// =============================================================================
+
+function currentTab() {
+  const sel = document.querySelector("nav.tabs button[aria-selected='true']");
+  return sel ? sel.dataset.tab : "observerships";
+}
+
+function syncHash() {
+  const tab = currentTab();
+  const params = new URLSearchParams();
+  if (OPPORTUNITY_TABS.includes(tab)) {
+    const f = FILTER_STATE[tab];
+    if (f.states.size) params.set("state", Array.from(f.states).join(","));
+    if (f.regions.size) params.set("region", Array.from(f.regions).join(","));
+    if (f.visa.size) params.set("visa", Array.from(f.visa).join(","));
+    if (f.freeOnly) params.set("free", "1");
+    if (f.openToNonCitizens) params.set("nc", "1");
+    if (f.handsOnOnly) params.set("ho", "1");
+  }
+  const qs = params.toString();
+  const newHash = qs ? `#${tab}?${qs}` : `#${tab}`;
+  if (newHash !== location.hash) {
+    history.replaceState(null, "", newHash);
+  }
+}
+
+function readHash() {
+  const h = location.hash.replace(/^#/, "");
+  if (!h) return null;
+  const [tab, qs] = h.split("?");
+  const params = new URLSearchParams(qs || "");
+  return { tab, params };
+}
+
+function applyHash() {
+  const parsed = readHash();
+  if (!parsed) return;
+  const { tab, params } = parsed;
+  const validTabs = new Set([...OPPORTUNITY_TABS, "visa", "resources"]);
+  if (!validTabs.has(tab)) return;
+  showTab(tab);
+  if (OPPORTUNITY_TABS.includes(tab)) {
+    const f = FILTER_STATE[tab];
+    f.states = new Set((params.get("state") || "").split(",").filter(Boolean));
+    f.regions = new Set((params.get("region") || "").split(",").filter(Boolean));
+    f.visa = new Set((params.get("visa") || "").split(",").filter(Boolean));
+    f.freeOnly = params.get("free") === "1";
+    f.openToNonCitizens = params.get("nc") === "1";
+    f.handsOnOnly = params.get("ho") === "1";
+    // Reflect into chip UI
+    const container = document.querySelector(`[data-filters-for="${tab}"]`);
+    if (container) {
+      container.querySelectorAll(".chip.state").forEach(b => b.classList.toggle("on", f.states.has(b.dataset.state)));
+      container.querySelectorAll(".chip.region").forEach(b => b.classList.toggle("on", f.regions.has(b.dataset.region)));
+      container.querySelectorAll(".chip.visa").forEach(b => b.classList.toggle("on", f.visa.has(b.dataset.visa)));
+      container.querySelectorAll(".chip.toggle").forEach(b => b.classList.toggle("on", f[b.dataset.toggle]));
+    }
+    applyFilters(tab);
+  }
+}
+
+// =============================================================================
+// INIT
+// =============================================================================
+
+function renderResourceSections() {
+  const sg = document.getElementById("res-strategy-guides");
+  if (sg) sg.innerHTML = (resources.strategyGuides || []).map(renderResource).join("");
+  document.getElementById("res-directories").innerHTML = resources.directories.map(renderResource).join("");
+  document.getElementById("res-residency").innerHTML = resources.residency.map(renderResource).join("");
+  document.getElementById("res-official").innerHTML = resources.official.map(renderResource).join("");
+  document.getElementById("res-networking").innerHTML = resources.networking.map(renderResource).join("");
+}
+
+function renderGrants() {
+  document.getElementById("grants-grid").innerHTML = grants.map(renderGrant).join("");
+}
+
+function setDataStatus(kind, title, body) {
+  const box = document.getElementById("data-status");
+  const t = document.getElementById("data-status-title");
+  const b = document.getElementById("data-status-body");
+  if (!box) return;
+  if (kind === "hide") { box.style.display = "none"; return; }
+  box.style.display = "block";
+  box.classList.remove("callout", "info");
+  box.classList.add("callout");
+  if (kind === "info") box.classList.add("info");
+  t.textContent = title;
+  b.innerHTML = body;
+}
+
+function resolveDataUrl() {
+  // ?data=URL in the page URL overrides DATA_URL, useful for previewing a different JSON.
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const override = params.get("data");
+    if (override) return override;
+  } catch (e) { /* ignore */ }
+  return DATA_URL;
+}
+
+async function loadData() {
+  const url = resolveDataUrl();
+  setDataStatus("info", "Loading opportunities…", `Fetching <code>${url}</code>`);
+  const res = await fetch(url, { cache: "no-cache" });
+  if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+  const data = await res.json();
+  opportunities = Array.isArray(data.opportunities) ? data.opportunities : [];
+  grants = Array.isArray(data.grants) ? data.grants : [];
+  if (data.resources && typeof data.resources === "object") {
+    resources = {
+      strategyGuides: data.resources.strategyGuides || [],
+      directories: data.resources.directories || [],
+      residency: data.resources.residency || [],
+      official: data.resources.official || [],
+      networking: data.resources.networking || []
+    };
+  }
+  dataMeta = data.meta || {};
+  // Update "Last reviewed" line if present.
+  if (dataMeta.lastReviewed) {
+    document.querySelectorAll(".as-of").forEach(el => {
+      el.textContent = `Last reviewed: ${dataMeta.lastReviewed}. Programs, fees, and eligibility change frequently — always verify directly with the institution.`;
+    });
+  }
+}
+
+function init() {
+  bindTabs();
+  OPPORTUNITY_TABS.forEach(tab => {
+    buildFiltersUI(tab);
+    applyFilters(tab);
+  });
+  renderGrants();
+  renderResourceSections();
+  applyHash();
+  window.addEventListener("hashchange", applyHash);
+  setDataStatus("hide");
+}
+
+async function bootstrap() {
+  try {
+    await loadData();
+    init();
+  } catch (err) {
+    const url = resolveDataUrl();
+    const isFile = window.location.protocol === "file:";
+    const fileHint = isFile
+      ? "<br><strong>This page was opened directly from disk (<code>file://</code>).</strong> Browsers block <code>fetch()</code> from <code>file://</code>. Host this file on a web server (or run a local static server like <code>python3 -m http.server</code>) so it can load <code>data.json</code>."
+      : "";
+    setDataStatus("info",
+      "Couldn't load opportunities",
+      `Failed to fetch <code>${url}</code>: ${String(err.message || err)}.${fileHint}<br><br>Edit the <code>DATA_URL</code> constant in this HTML to point at your hosted JSON, or pass <code>?data=URL</code> in the page URL.`
+    );
+    // Still wire up tab clicks so the visa/resources tabs work even without data.
+    bindTabs();
+    renderResourceSections();
+    renderGrants();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", bootstrap);
+</script>
+
+</body>
+</html>
